@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+     <title>Comparador de Escolas</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" href="/maps/documentation/javascript/demos/demos.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    
+  </head>
+  <body>
+  	<!-- Mapa -->
+    <div id="map"></div>
+
+    <a style="display:none" class="btn" id="outraEscola" onclick="Materialize.toast('Selecione outra escola', 4000)">Toast!</a>
+    <a style="display:none" class="btn" id="erroAPI" onclick="Materialize.toast('Ocorreu um erro no acesso da API', 6000)">Toast!</a>
+    <a  style="display:none" class="waves-effect waves-light btn" href="#modal1" id="clickCidade"></a>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <table class="striped">
+        <thead>
+          <tr>
+              <th id="nomeEscola">Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Rede:</td>
+            <td id="rede"></td>
+          </tr>
+          <tr>
+            <td>Salas</td>
+            <td id="salas"></td>
+          </tr>
+          <tr>
+            <td>Situacao</td>
+            <td id="situacao"></td>
+          </tr>
+          <tr>
+            <td>Computadores por aluno</td>
+            <td id="computadores"></td>
+          </tr>
+          <tr>
+            <td>Número de alunos:</td>
+            <td id="alunos"></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="finalizar" onclick="finalizar()">Finalizar</a>
+      </div>
+    </div>
+
+    <!-- Modal Trigger -->
+    <a  style="display:none" class="waves-effect waves-light btn" href="#modal2" id="clickCidade"></a>
+
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <table class="striped">
+        <thead>
+          <tr>
+              <th id="escola1"></th>
+              <th ></th>
+              <th ></th>
+              <th id="escola2"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Rede</td>
+            <td id="rede1"></td>
+            <td></td>
+            <td>Rede</td>
+            <td id="rede2"></td>
+          </tr>
+           <tr>
+            <td>Salas</td>
+            <td id="salas1"></td>
+            <td></td>
+            <td>Salas</td>
+            <td id="salas2"></td>
+          </tr>
+           <tr>
+            <td>Situacao</td>
+            <td id="situacao1"></td>
+            <td></td>
+            <td>Situacao</td>
+            <td id="situacao2"></td>
+          </tr>
+          <tr>
+            <td>Computador por aluno</td>
+            <td id="computadores1"></td>
+            <td></td>
+            <td>Computador por aluno</td>
+            <td id="computadores2"></td>
+          </tr>
+          <tr>
+            <td>Número de alunos</td>
+            <td id="alunos1"></td>
+            <td></td>
+            <td>Número de alunos</td>
+            <td id="alunos2"></td>
+          </tr>
+          <tr>
+            <td>Média do Ideb</td>
+            <td id="media1"></td>
+            <td></td>
+            <td>Média do Ideb</td>
+            <td id="media2"></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="finalizar" onclick="finalizar()">Finalizar</a>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="static/js/materialize.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJU0Vxj4-UZJovYPT2TJIqHSOke6VIYyk&callback=initMap">
+    </script>
+    <script type="text/javascript" src="static/js/main.js"></script>
+    </body>
+</html>
+
