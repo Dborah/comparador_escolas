@@ -1,5 +1,5 @@
 var pos,i, marker, map, infowindow, clickLatitude, clickLongitude, codigoEscola;
-var cidade, primeiraEscola, segundaEscola, JSONEscola1, JSONEscola2;
+var cidade, primeiraEscola, segundaEscola, JSONEscola1, JSONEscola2, escolaNome;
 var escola = 0;
 
 function initMap() {
@@ -59,12 +59,14 @@ function escolasMarker(pos){
             return function () {
               infowindow.setContent(resp_obj[i].nome + 
                 '</br><a href="#modal1" id="clickCidade" onclick="createModal()">Ver Dados</a>' +
-                '&nbsp;&nbsp;<a href="#" onclick="selectCompare()">Comparar</a>'
+                '&nbsp;&nbsp;<a href="#" onclick="selectCompare()">Comparar</a>' +
+                '&nbsp;&nbsp;<a href="#modal3" id="grafico" onclick="gerarGrafico()">Ver Gráfico</a>'
                );
               infowindow.open(map, marker);
               clickLatitude = resp_obj[i].latitude;
               clickLongitude = resp_obj[i].longitude;
               codigoEscola =  resp_obj[i].codEscola;
+              escolaNome = resp_obj[i].nome;
             }
           })(marker, i));
       } 
@@ -244,6 +246,49 @@ function createModalComparacao(){
   escola = 0;
   $('#modal2').modal('open');
 }
+
+function gerarGrafico(){
+  var req = new XMLHttpRequest();
+  req.onloadend = function(){
+    resp = req.responseText;
+    resp_obj = JSON.parse(resp);
+    
+
+      var chart = new CanvasJS.Chart("chartContainer",
+      {
+      title: {
+        text: escolaNome + " - Índice de Desenvolvimento da Educação Básica (Ideb) feitas na escola por ano"
+      },
+      data: [
+      {
+        type: "bar",
+        dataPoints: [ 
+          { x: resp_obj[0].ano, y: resp_obj[0].valor }, 
+          { x: resp_obj[1].ano, y: resp_obj[1].valor },
+          { x: resp_obj[2].ano, y: resp_obj[2].valor },
+          { x: resp_obj[3].ano, y: resp_obj[3].valor }
+          ]
+        }
+      ]
+      });
+      chart.render();
+
+      var canvas = $("#chartContainer .canvasjs-chart-canvas").get(0);
+      var dataURL = canvas.toDataURL();
+      //console.log(dataURL);
+
+      $("#exportButton").click(function(){
+      var pdf = new jsPDF();
+      pdf.addImage(dataURL, 'JPEG', 0, 0);
+      pdf.save("download.pdf");
+      });
+
+    }
+  req.open('GET', 'http://mobile-aceite.tcu.gov.br:80/nossaEscolaRS/rest/escolas/'+ codigoEscola+'/avaliacoes?quantidadeDeItens=6');
+  req.send(null);
+    
+}
+
 
 $(document).ready(function(){
    $(".button-collapse").sideNav();

@@ -77,42 +77,36 @@
             <td>Rede</td>
             <td id="rede1"></td>
             <td></td>
-            <td>Rede</td>
             <td id="rede2"></td>
           </tr>
            <tr>
             <td>Salas</td>
             <td id="salas1"></td>
             <td></td>
-            <td>Salas</td>
             <td id="salas2"></td>
           </tr>
            <tr>
             <td>Situacao</td>
             <td id="situacao1"></td>
             <td></td>
-            <td>Situacao</td>
             <td id="situacao2"></td>
           </tr>
           <tr>
             <td>Computador por aluno</td>
             <td id="computadores1"></td>
             <td></td>
-            <td>Computador por aluno</td>
             <td id="computadores2"></td>
           </tr>
           <tr>
             <td>Número de alunos</td>
             <td id="alunos1"></td>
             <td></td>
-            <td>Número de alunos</td>
             <td id="alunos2"></td>
           </tr>
           <tr>
             <td>Média do Ideb</td>
             <td id="media1"></td>
             <td></td>
-            <td>Média do Ideb</td>
             <td id="media2"></td>
           </tr>
         </tbody>
@@ -123,12 +117,30 @@
       </div>
     </div>
 
+
+    <!-- Modal Trigger -->
+    <a  style="display:none" class="waves-effect waves-light btn" href="#modal3" id="grafico"></a>
+
+    <!-- Modal Structure -->
+    <div id="modal3" class="modal">
+      <div class="modal-content">
+        	<div id="chartContainer" style="height: 360px; width: 100%;"></div>
+      <div class="modal-footer">
+
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="finalizar" onclick="finalizar()">Finalizar</a>
+        <a class="waves-effect waves-green btn-flat" id="exportButton">Gerar PDF</a>
+		
+    </div>
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="static/js/materialize.min.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJU0Vxj4-UZJovYPT2TJIqHSOke6VIYyk&callback=initMap">
     </script>
     <script type="text/javascript" src="static/js/main.js"></script>
+     <script type="text/javascript" src="static/js/Chart.js"></script>
+     <script type="text/javascript" src="static/js/jspdf.min.js"></script>
+     <script type="text/javascript" src="static/js/canvasjs.min.js"></script>
     </body>
 </html>
 
